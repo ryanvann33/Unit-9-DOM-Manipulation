@@ -10,13 +10,22 @@ const DOMSelectors = {
   null: document.getElementById("point"), // if you try to access a class with getElementById, it will result in "null"
   empty: document.querySelector(".nothing"),
 };
+function backgroundAndText(background, text) {
+  background.style.backgroundColor = "red";
+  text.innerHTML = "This is now a big red box";
+  text.style.fontSize = "40px";
+}
 
-console.log(DOMSelectors.box);
-console.log(DOMSelectors.button);
-console.log(DOMSelectors.text);
-console.log(DOMSelectors.points);
-console.log(DOMSelectors.points[0]); // this returns the first ever element in the document with class 'point'
-console.log(DOMSelectors.null);
-console.log(DOMSelectors.nothing);
-// when you look in the console after logging DOMSelectors, you will be able to see the elements that the DOMSelector accesses.
-// if you have a DOMSelector for an element that doesn't exist, it will show up as undefined.
+DOMSelectors.button.addEventListener("click", function () {
+  backgroundAndText(DOMSelectors.box, DOMSelectors.text);
+});
+backgroundAndText(DOMSelectors.box, DOMSelectors.text);
+
+function changeLi() {
+  DOMSelectors.points.forEach((point) => {
+    point.addEventListener("click", function () {
+      point.textContent = "Hello";
+    });
+  });
+}
+changeLi();
